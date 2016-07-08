@@ -1,0 +1,120 @@
+    // Challenge description:
+    // https://www.reddit.com/r/dailyprogrammer/comments/4q35ip/20160627_challenge_273_easy_getting_a_degree/
+    
+    using System;
+
+    namespace dailyprogrammer_Challenge_273_Easy_Getting_a_degree
+    {
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double value;
+            string typeOfConversion;
+
+            string[] inputValues = { "3.1416rd", "90dr", "212fc", "70cf", "100cr", "315.15kc" };
+
+            foreach (string element in inputValues)
+            {
+
+                take_input(element, out value, out typeOfConversion);
+
+                switch (typeOfConversion)
+                {
+                    case "rd":
+
+                        Console.WriteLine(string.Format("{0:0.00}d", radiansToDegrees(value)));
+                        break;
+
+                    case "dr":
+
+                        Console.WriteLine(string.Format("{0:0.00}r", degreesToRadians(value)));
+                        break;
+
+                    case "kc":
+
+                        Console.WriteLine(string.Format("{0:0.00}c", kelvinsToCelcius(value)));
+                        break;
+
+                    case "kf":
+
+                        Console.WriteLine(string.Format("{0:0.00}f", kelvinsToFahrenheit(value)));
+                        break;
+
+                    case "fc":
+
+                        Console.WriteLine(string.Format("{0:0.00}c", fahrenheitToCelcius(value)));
+                        break;
+
+                    case "fk":
+
+                        Console.WriteLine(string.Format("{0:0.00}k", fahrenheitToKelvin(value)));
+                        break;
+
+                    case "cf":
+
+                        Console.WriteLine(string.Format("{0:0.00}f", CelciusToFahrenheit(value)));
+                        break;
+
+                    case "ck":
+
+                        Console.WriteLine(string.Format("{0:0.00}k", CelciusToKelvins(value)));
+                        break;
+
+                    default:
+                        Console.WriteLine("No candidate for conversion");
+                        break;
+                }
+            }
+
+            Console.ReadKey();
+        }
+
+        public static void take_input(string input, out double value, out string typeOfConversion)
+        {
+            value = double.Parse(input.Substring(0, input.Length - 2), System.Globalization.CultureInfo.InvariantCulture); ;
+            typeOfConversion = input.Substring(input.Length - 2);
+        }
+
+        public static double radiansToDegrees(double input)
+        {
+            return input * (180f / Math.PI);
+        }
+
+        public static double degreesToRadians(double input)
+        {
+            return input * (Math.PI/180f);
+        }
+
+        public static double kelvinsToCelcius(double input)
+        {
+            return input - 273.15f;
+        }
+
+        public static double kelvinsToFahrenheit(double input)
+        {
+            return input * (9f / 5f) - 459.67f;
+        }
+
+        public static double CelciusToKelvins(double input)
+        {
+            return input + 273.15f;
+        }
+
+        public static double CelciusToFahrenheit(double input)
+        {
+            return (input * (9f / 5f)) + 32f;
+        }
+
+        public static double fahrenheitToCelcius(double input)
+        {
+            return (input - 32f) * (5f / 9f);
+        }
+
+        public static double fahrenheitToKelvin(double input)
+        {
+            return (input + 459.67f) * (5f / 9f);
+        }
+
+    }
+    }
