@@ -1,2 +1,2 @@
-# reddit.com-r-dailyprogrammer
+# reddit.com/r/dailyprogrammer
 My solutions to challenges from reddit.com/r/dailyprogrammer
